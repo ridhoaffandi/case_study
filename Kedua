@@ -1,0 +1,12 @@
+CREATE TABLE data_penjualan(
+    id_penjualan INT PRIMARY KEY AUTO_INCREMENT,
+    barang INT,
+    pembeli INT,
+    jumlah INT NOT NULL,
+    tanggal DATE,
+    lokasi_toko INT,
+    FOREIGN KEY (barang) REFERENCES data_barang(id_barang),
+    FOREIGN KEY (pembeli) REFERENCES data_pembeli (nomor_identitas),
+    FOREIGN KEY (lokasi_toko) REFERENCES data_toko(id_toko))
+PARTITION BY RANGE (YEAR(tanggal))
+SUBPARTITION BY RANGE (MONTH(tanggal));
