@@ -1,0 +1,27 @@
+CREATE TABLE data_pembeli (
+    nomor_identitas INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    jenis_kelamin VARCHAR(10) NOT NULL,
+    alamat TEXT(100),
+    nomor_hp TEXT(50) )
+CREATE TABLE  data_toko (
+    id_toko INT PRIMARY KEY AUTO_INCREMENT,
+    nama_toko VARCHAR (50) NOT NULL,
+    alamat_toko TEXT(100))
+CREATE TABLE data_barang (
+    id_barang INT PRIMARY KEY AUTO_INCREMENT
+    nama_barang TEXT(100) NOT NULL,
+    kategori VARCHAR(50) NOT NULL,
+    jumlah_barang INT, 
+    keterangan TEXT(50))
+CREATE TABLE data_penjualan(
+    id_penjualan INT PRIMARY KEY AUTO_INCREMENT,
+    barang INT,
+    pembeli INT,
+    jumlah INT NOT NULL,
+    tanggal DATE,
+    lokasi_toko INT,
+    FOREIGN KEY (barang) REFERENCES data_barang(id_barang),
+    FOREIGN KEY (pembeli) REFERENCES data_pembeli (nomor_identitas),
+    FOREIGN KEY (lokasi_toko) REFERENCES data_toko(id_toko))
+;
